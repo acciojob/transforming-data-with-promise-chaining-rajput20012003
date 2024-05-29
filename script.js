@@ -1,6 +1,10 @@
-//your JS code here. If required.
 document.getElementById("btn").addEventListener("click", function () {
   const inputNumber = parseInt(document.getElementById("ip").value);
+
+  if (isNaN(inputNumber)) {
+    document.getElementById("output").textContent = "Please enter a valid number.";
+    return;
+  }
 
   // First Promise
   const firstPromise = new Promise((resolve) => {
@@ -9,7 +13,7 @@ document.getElementById("btn").addEventListener("click", function () {
     }, 2000);
   });
 
-  // Second Promise
+  // Chain of Promises
   firstPromise
     .then((result) => {
       document.getElementById("output").textContent = `Result: ${result}`;
@@ -19,35 +23,39 @@ document.getElementById("btn").addEventListener("click", function () {
         }, 2000);
       });
     })
-    // Third Promise
     .then((result) => {
+      const newResult = result * 2;
+      document.getElementById("output").textContent = `Result: ${newResult}`;
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(result * 2);
+          resolve(newResult);
         }, 1000);
       });
     })
-    // Fourth Promise
     .then((result) => {
+      const newResult = result - 3;
+      document.getElementById("output").textContent = `Result: ${newResult}`;
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(result - 3);
+          resolve(newResult);
         }, 1000);
       });
     })
-    // Fifth Promise
     .then((result) => {
+      const newResult = result / 2;
+      document.getElementById("output").textContent = `Result: ${newResult}`;
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(result / 2);
+          resolve(newResult);
         }, 1000);
       });
     })
-    // Sixth Promise
     .then((result) => {
+      const newResult = result + 10;
+      document.getElementById("output").textContent = `Result: ${newResult}`;
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(result + 10);
+          resolve(newResult);
         }, 1000);
       });
     })
@@ -59,4 +67,3 @@ document.getElementById("btn").addEventListener("click", function () {
       console.error("Error:", error);
     });
 });
-
